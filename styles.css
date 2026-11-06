@@ -1,0 +1,13 @@
+:root, :host{
+    scrollbar-gutter: auto !important;
+    /*overflow: hidden !important;*/
+}
+
+html::-webkit-scrollbar {
+  display: none !important;
+  overflow: hidden !important;
+}
+
+.color-orange{
+    --bs-heading-color: #ff7700 !important;
+}
