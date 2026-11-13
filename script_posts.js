@@ -1,26 +1,72 @@
+//Botones de Paginación
+const nextButton = document.getElementById("next");
+const previousButton = document.getElementById("previous");
+
 const postsGrid = document.getElementById("postsGrid")
 
 let currentPage = 1;
+// let has_more_pages = true
 
 controlPosts(currentPage)
 
 async function controlPosts(page){
     let result = await getDataBasePosts(page);
-    //console.log(`result es ${result}`)
-    chargeGrid(result);
+    if (!result.has_more_pages) {
+        nextButton.disabled = true;
+    } else {
+        chargeGrid(result);
+    }
+    /*nextButton.addEventListener("click", (result) => {
+        if (result.has_more_pages) {
+            currentPage += 1;
+            let newResponse = getDataBasePosts(currentPage);
+            chargeGrid(newResponse)
+            console.log(currentPage)
+        }
+    });
+    previousButton.addEventListener("click", (result) => {
+        if (result.page > 1) {
+            currentPage -= 1;
+            let newResponse = getDataBasePosts(currentPage);
+            chargeGrid(newResponse)
+            console.log(currentPage)
+        }
+    });*/
+}
+
+function nextPage(){
+    currentPage += 1;
+    controlPosts(currentPage);
+    console.log(currentPage);
+}
+
+function previousPage() {
+    if (currentPage > 1){
+        currentPage -= 1;
+        controlPosts(currentPage);
+        console.log(currentPage);
+    } else {
+        return
+    }
 }
 
 function chargeGrid(obj){
     //console.log(obj)
+    postsGrid.innerHTML = "";
     obj.data.forEach((element) => {
+        let title = element.title;
+        let description = element.description;
+        if (description == "No existe descripción..."){
+            description = "";
+        }
         postsGrid.innerHTML += 
         `<section class="card">
-            <div class="card-body d-flex flex-row align-items-center">
-                <h4 class="card-title">${element.title}</h4>
-                <p class="card-text">${element.description}</p>
-                <a href="#" class="btn-solid theme-primary">Más Info...</a>
+            <div class="card-body d-flex flex-row align-items-center justify-content-between">
+                <h4 class="card-title">${title}</h4>
+                <p class="card-text">${description}</p>
+                <a href="#drawerGeneric" class="btn-solid theme-primary" role="button" aria-controls="drawerGeneric">Más Info...</a>
             </div>
-        </section>`
+        </section>`;
     });
 }
 
