@@ -1,5 +1,6 @@
 //Botones de Paginación
 const nextButton = document.getElementById("next");
+const randomButton = document.getElementById("random_page");
 const previousButton = document.getElementById("previous");
 
 const postsGrid = document.getElementById("postsGrid");
@@ -7,10 +8,20 @@ const postsGrid = document.getElementById("postsGrid");
 //Drawer
 const drawerPosts = document.getElementById("drawerGeneric");
 
+//SearchBox
+const searchBox = document.getElementById("searchBoxPosts");
+
 let currentPage = 1;
 // let has_more_pages = true
 
 controlPosts(currentPage)
+
+/*for (let i = 1; i <= 14; i++) {
+    let buttonInfo = document.querySelector(`#info${i}`);
+    buttonInfo.addEventListener("click", () => {
+        activateDrawer(2)
+    })
+}*/
 
 async function controlPosts(page){
     let result = await getDataBasePosts(page);
@@ -64,19 +75,16 @@ function chargeGrid(obj){
         if (description == "No existe descripción..."){
             description = "";
         }
-        position += 1;
         postsGrid.innerHTML += 
         `<section class="card">
             <div class="card-body d-flex flex-row align-items-center justify-content-between">
                 <h4 class="card-title">${title}</h4>
                 <p class="card-text">${description}</p>
-                <a id="${position}" class="btn-solid theme-primary" data-bs-toggle="drawer" href="#drawerGeneric" role="button" aria-controls="drawerGeneric">Más Info...</a>
+                <a data-index="${position}" class="btn-solid theme-primary button-more-info" data-bs-toggle="drawer" href="#drawerGeneric" role="button" aria-controls="drawerGeneric">Más Info...</a>
             </div>
         </section>`;
 
-        document.getElementById(`${position}`).addEventListener("click", () => {
-            activateDrawer(element);
-        })
+        position += 1;
     });
 }
 
@@ -95,14 +103,66 @@ async function getDataBasePosts(page_num) {
 };
 
 function activateDrawer(element){
-    drawerPosts.innerHTML = 
-    `<div class="drawer-header">
-        <h5 class="drawer-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
-    </div>
-    <div class="drawer-body">
-        <h2>${element.title}</h2>
-        <h4></h4>
-        <p>${element.description}</p>
-    </div>`
+    console.log(element);
+    if (element.description != "No existe descripción...") {
+        drawerPosts.innerHTML = 
+        `<div class="drawer-header">
+            <h5 class="drawer-title">${element.title}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+        </div>
+        <div class="drawer-body">
+            <h4>Description</h4>
+            <p>${element.description}</p>
+        </div>`
+    } else {
+        drawerPosts.innerHTML = 
+        `<div class="drawer-header">
+            <h5 class="drawer-title">${element.title}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+        </div>
+        <div class="drawer-body">
+        </div>`
+    }
+    
 }
+
+async function searchOnPage(userInput) {
+    let response = await getDataBasePosts(currentPage);
+    let postsToShow = [];
+    if (response) {
+        userInput = userInput.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        response.data.forEach((element) => {
+            if (element.title.toLowerCase().includes(userInput) || element.description.toLowerCase().includes(userInput)) {
+                postsToShow += element;
+            }
+        });
+        console.log(postsToShow[0]);
+    }
+}
+
+postsGrid.addEventListener("click", async (e) => {
+    if (e.target.classList.contains('button-more-info')) {
+        let dataIndex = e.target.getAttribute('data-index');
+        let response = await getDataBasePosts(currentPage);
+        console.log(response);
+        if (response) {
+            let element = response.data[dataIndex];
+            console.log(element);
+            activateDrawer(element);
+        }
+    }
+});
+
+randomButton.addEventListener("click", () => {
+    let random_page = Math.floor(Math.random() * (103 - 1 + 1)) + 1;
+    console.log(random_page);
+    currentPage = random_page;
+    controlPosts(random_page);
+});
+
+searchBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && searchBox.value) {
+        e.preventDefault();
+        searchOnPage(searchBox.value);
+    }
+});

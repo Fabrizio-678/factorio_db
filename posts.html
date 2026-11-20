@@ -49,6 +49,7 @@
         <dialog id="drawerGeneric" class="drawer drawer-fullscreen" tabindex="-1">
             
         </dialog>
+        <input class="form-control mb-5 w-min" style="field-sizing: content !important; min-width: 215px !important; max-width: 100% !important;" list="datalistOptions" id="searchBoxPosts" placeholder="Type to search for a post...">
         <div id="postsGrid" class="grid grid-cols-1">
             <!--<section class="card" style="max-width: 320px">
                 <div class="card-body d-flex flex-row align-items-center">
@@ -63,6 +64,7 @@
             <nav>
                 <ul class="pagination">
                     <li class="page-item"><a id="previous" class="page-link" onclick="previousPage()" href="#">Previous</a></li>
+                    <li class="page-item"><a id="random_page" class="page-link" href="#">Random Page</a></li>
                     <li class="page-item"><a id="next" class="page-link" onclick="nextPage()" href="#">Next</a></li>
                 </ul>
             </nav>
