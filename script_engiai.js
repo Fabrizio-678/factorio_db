@@ -256,6 +256,160 @@ const yesOrNoQuestions = [
     }
 ];
 
+
+const multipleChoiceQuestions = [
+    {
+        pregunta: "¿Qué máquina se utiliza para extraer minerales del suelo?",
+        opciones: ["Horno", "Taladro minero", "Ensamblador", "Laboratorio"],
+        respuesta: "Taladro minero"
+    },
+    {
+        pregunta: "¿Qué recurso se obtiene al fundir mineral de hierro?",
+        opciones: ["Cobre", "Acero", "Plástico", "Placas de hierro"],
+        respuesta: "Placas de hierro"
+    },
+    {
+        pregunta: "¿Qué estructura permite investigar nuevas tecnologías?",
+        opciones: ["Laboratorio", "Refinería", "Caldera", "Cofre"],
+        respuesta: "Laboratorio"
+    },
+    {
+        pregunta: "¿Qué elemento transporta objetos automáticamente por la fábrica?",
+        opciones: ["Inserter", "Cable", "Cinta transportadora", "Tubería"],
+        respuesta: "Cinta transportadora"
+    },
+    {
+        pregunta: "¿Qué combustible utiliza una caldera para producir vapor?",
+        opciones: ["Agua", "Mineral", "Plástico", "Carbón"],
+        respuesta: "Carbón"
+    },
+    {
+        pregunta: "¿Qué máquina permite fabricar objetos automáticamente?",
+        opciones: ["Ensamblador", "Acumulador", "Radar", "Torreta"],
+        respuesta: "Ensamblador"
+    },
+    {
+        pregunta: "¿Qué recurso se utiliza para fabricar cables eléctricos?",
+        opciones: ["Hierro", "Cobre", "Piedra", "Carbón"],
+        respuesta: "Cobre"
+    },
+    {
+        pregunta: "¿Qué estructura almacena energía eléctrica?",
+        opciones: ["Caldera", "Generador", "Acumulador", "Horno"],
+        respuesta: "Acumulador"
+    },
+    {
+        pregunta: "¿Qué tipo de robot construye estructuras mediante planos?",
+        opciones: ["Logístico", "Médico", "Explorador", "Construcción"],
+        respuesta: "Construcción"
+    },
+    {
+        pregunta: "¿Qué recurso se procesa en una refinería de petróleo?",
+        opciones: ["Petróleo crudo", "Mineral de hierro", "Agua", "Carbón"],
+        respuesta: "Petróleo crudo"
+    },
+    {
+        pregunta: "¿Qué elemento permite modificar el rendimiento de las máquinas?",
+        opciones: ["Semáforo", "Módulo", "Inserter", "Cofre"],
+        respuesta: "Módulo"
+    },
+    {
+        pregunta: "¿Qué enemigos atacan las instalaciones del jugador?",
+        opciones: ["Trenes", "Robots", "Mordedores", "Insertores"],
+        respuesta: "Mordedores"
+    },
+    {
+        pregunta: "¿Qué estructura genera electricidad utilizando la luz solar?",
+        opciones: ["Panel solar", "Caldera", "Horno", "Refinería"],
+        respuesta: "Panel solar"
+    },
+    {
+        pregunta: "¿Qué elemento regula el tránsito de los trenes?",
+        opciones: ["Baliza", "Inserter", "Cofre", "Semáforo ferroviario"],
+        respuesta: "Semáforo ferroviario"
+    },
+    {
+        pregunta: "¿Qué objeto permite guardar diseños de construcciones?",
+        opciones: ["Mapa", "Plano", "Radar", "Módulo"],
+        respuesta: "Plano"
+    },
+    {
+        pregunta: "¿Qué material se utiliza para fabricar placas de cobre?",
+        opciones: ["Carbón", "Piedra", "Mineral de cobre", "Petróleo"],
+        respuesta: "Mineral de cobre"
+    },
+    {
+        pregunta: "¿Qué instalación consume paquetes de ciencia para investigar?",
+        opciones: ["Laboratorio", "Taladro", "Horno", "Caldera"],
+        respuesta: "Laboratorio"
+    },
+    {
+        pregunta: "¿Qué elemento permite transportar líquidos?",
+        opciones: ["Cinta", "Inserter", "Vagón", "Tubería"],
+        respuesta: "Tubería"
+    },
+    {
+        pregunta: "¿Qué unidad permite transportar grandes cantidades de recursos por ferrocarril?",
+        opciones: ["Locomotora", "Vagón de carga", "Robot", "Acumulador"],
+        respuesta: "Vagón de carga"
+    },
+    {
+        pregunta: "¿Qué genera la actividad industrial y puede atraer enemigos?",
+        opciones: ["Electricidad", "Vapor", "Contaminación", "Ciencia"],
+        respuesta: "Contaminación"
+    },
+    {
+        pregunta: "¿Qué estructura permite defender la fábrica automáticamente?",
+        opciones: ["Torreta", "Laboratorio", "Ensamblador", "Radar"],
+        respuesta: "Torreta"
+    },
+    {
+        pregunta: "¿Qué máquina convierte el mineral en placas metálicas?",
+        opciones: ["Refinería", "Ensamblador", "Laboratorio", "Horno"],
+        respuesta: "Horno"
+    },
+    {
+        pregunta: "¿Qué tipo de robot transporta objetos entre cofres logísticos?",
+        opciones: ["Construcción", "Logístico", "Militar", "Explorador"],
+        respuesta: "Logístico"
+    },
+    {
+        pregunta: "¿Qué estructura permite transmitir efectos de módulos a máquinas cercanas?",
+        opciones: ["Acumulador", "Radar", "Baliza", "Semáforo"],
+        respuesta: "Baliza"
+    },
+    {
+        pregunta: "¿Qué vehículo permite transportar al jugador y desplazarse por el mapa?",
+        opciones: ["Automóvil", "Vagón", "Inserter", "Caldera"],
+        respuesta: "Automóvil"
+    },
+    {
+        pregunta: "¿Qué tecnología permite transportar objetos sin utilizar cintas?",
+        opciones: ["Fundición", "Robots logísticos", "Energía solar", "Ferrocarril"],
+        respuesta: "Robots logísticos"
+    },
+    {
+        pregunta: "¿Qué estructura permite detectar y revelar zonas del mapa?",
+        opciones: ["Horno", "Torreta", "Radar", "Cofre"],
+        respuesta: "Radar"
+    },
+    {
+        pregunta: "¿Qué recurso se utiliza para fabricar circuitos electrónicos básicos?",
+        opciones: ["Piedra", "Agua", "Carbón", "Placas de cobre"],
+        respuesta: "Placas de cobre"
+    },
+    {
+        pregunta: "¿Qué máquina produce vapor para alimentar generadores?",
+        opciones: ["Caldera", "Acumulador", "Ensamblador", "Taladro"],
+        respuesta: "Caldera"
+    },
+    {
+        pregunta: "¿Cuál es el objetivo clásico de progresión de Factorio?",
+        opciones: ["Construir un tren", "Derrotar a todos los enemigos", "Lanzar un cohete", "Fabricar un Spidertron"],
+        respuesta: "Lanzar un cohete"
+    }
+];
+
 // Aplicar el render personalizado a Marked
 marked.use({ renderer: customRender });
 
@@ -293,20 +447,67 @@ async function enviarMensaje(){
 }
 
 function makeYesOrNoQuestion(){
+    const botChat = document.getElementById('bot-chat');
+
+    botChat.innerHTML = "";
     if (document.getElementById('yesOrNoQuestions').classList.contains('active')) {
-        questionNumber = Math.floor(Math.random() * (49 - 0 + 1)) + 0;
-        document.getElementById("bot-chat").innerHTML = `<div class="w-100 p-4">
-        ${yesOrNoQuestions[questionNumber].pregunta}
-        <button id="yes" type="button" class="btn">Si</button>
-        <button id="no" type="button" class="btn">No</button>
+        let questionNumber = Math.floor(Math.random() * (49 - 0 + 1)) + 0;
+        botChat.innerHTML = `<div class="w-100 p-4">
+        <p class="fs-xl">${yesOrNoQuestions[questionNumber].pregunta}</p>
+        <div class="w-100 mt-8">
+            <button id="yes" type="button" class="btn answer-btn fs-md">Sí</button>
+            <button id="no" type="button" class="btn answer-btn fs-md">No</button>
+        </div>
         </div>`;
 
-        document.addEventListener('click', (e) => {
-            if ((e.target.innerHTML == "Si" || e.target.innerHTML == "No") && e.target.text == yesOrNoQuestions[questionNumber].respuesta) {
-                console.log("Correcto");
-            } else {
-                console.log("Incorrecto");
-            }
+        botChat.querySelectorAll('.answer-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (e.target.classList.contains('answer-btn')) {
+                    if (e.target.textContent.trim() === yesOrNoQuestions[questionNumber].respuesta.slice(0, 2)) {
+                        botChat.querySelector('div').innerHTML += `<h4 class="fg-success mt-12 fs-xl mb-5">¡Correcto!</h4>
+                        <button type="button" class="btn" onclick="makeYesOrNoQuestion()">Siguiente pregunta</button>`
+                    } else {
+                        botChat.querySelector('div').innerHTML += `<h4 class="fg-danger mt-12 fs-xl mb-5">¡Incorrecto!</h4>
+                        <p class="mb-6">La respuesta correcta era ${yesOrNoQuestions[questionNumber].respuesta}</p>
+                        <button type="button" class="btn" onclick="makeYesOrNoQuestion()">Vuelve a intentarlo</button>`
+                    }
+                    botChat.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+                }
+            })
+        });
+    }
+}
+
+function makeMultipleChoiceQuestion(){
+    const botChat = document.getElementById('bot-chat');
+
+    botChat.innerHTML = "";
+    if (document.getElementById('multipleChoice').classList.contains('active')) {
+        let questionNumber = Math.floor(Math.random() * (29 - 0 + 1)) + 0;
+        botChat.innerHTML = `<div class="w-100 p-4">
+        <p class="fs-xl">${multipleChoiceQuestions[questionNumber].pregunta}</p>
+        <div class="w-100 mt-8">
+            <button type="button" class="btn answer-btn fs-md">${multipleChoiceQuestions[questionNumber].opciones[0]}</button>
+            <button type="button" class="btn answer-btn fs-md">${multipleChoiceQuestions[questionNumber].opciones[1]}</button>
+            <button type="button" class="btn answer-btn fs-md">${multipleChoiceQuestions[questionNumber].opciones[2]}</button>
+            <button type="button" class="btn answer-btn fs-md">${multipleChoiceQuestions[questionNumber].opciones[3]}</button>
+        </div>
+        </div>`;
+
+        botChat.querySelectorAll('.answer-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (e.target.classList.contains('answer-btn')) {
+                    if (e.target.textContent.trim() === multipleChoiceQuestions[questionNumber].respuesta) {
+                        botChat.querySelector('div').innerHTML += `<h4 class="fg-success mt-12 fs-xl mb-5">¡Correcto!</h4>
+                        <button type="button" class="btn" onclick="makeMultipleChoiceQuestion()">Siguiente pregunta</button>`
+                    } else {
+                        botChat.querySelector('div').innerHTML += `<h4 class="fg-danger mt-12 fs-xl mb-5">¡Incorrecto!</h4>
+                        <p class="mb-6">La respuesta correcta era ${multipleChoiceQuestions[questionNumber].respuesta}</p>
+                        <button type="button" class="btn" onclick="makeMultipleChoiceQuestion()">Vuelve a intentarlo</button>`
+                    }
+                    botChat.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+                }
+            })
         });
     }
 }
@@ -331,20 +532,24 @@ document.querySelector('[aria-label="Open EngiAI Menu"]').addEventListener('clic
 document.querySelector("div.nav.nav-pills.navbar-nav").addEventListener('click', (e) => {
     if (!e.target.classList.contains('active')){
         e.target.classList.add('active');
-        document.getElementById('bot-chat').innerHTML = "";
         switch (e.target.id) {
             case "normalConversation":
                 document.getElementById('yesOrNoQuestions').classList.remove('active');
                 document.getElementById('multipleChoice').classList.remove('active');
+                document.getElementById("user-input").disabled = false;
+                document.getElementById('bot-chat').innerHTML = "";
                 break;
             case "yesOrNoQuestions":
                 document.getElementById('normalConversation').classList.remove('active');
                 document.getElementById('multipleChoice').classList.remove('active');
+                document.getElementById("user-input").disabled = true;
                 makeYesOrNoQuestion();
                 break;
             case "multipleChoice":
                 document.getElementById('normalConversation').classList.remove('active');
                 document.getElementById('yesOrNoQuestions').classList.remove('active');
+                document.getElementById("user-input").disabled = true;
+                makeMultipleChoiceQuestion();
                 break;
         }
     }
