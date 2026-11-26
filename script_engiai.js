@@ -423,17 +423,24 @@ async function enviarMensaje(){
     chatBot.innerHTML += `<div class="rounded-8 bg-2 w-fit ms-auto p-4">${texto}</div>`;
     inputUsuario.value = "";
 
+    chatBot.innerHTML += `<div id="container-spinners"></div>`;
+    const spinnerContainer = document.getElementById('container-spinners');
+
+    for (let i = 0; i <= 2; i++) {
+        let spinner = `<div id="spinner${i}" class="spinner-grow me-1" role="status"></div>`;
+        spinner.innerHTML = `<span class="visually-hidden">Loading…</span>`;
+        spinnerContainer.innerHTML += spinner;
+        document.getElementById(`spinner${i}`).style.animationDelay = `${i * 150}ms`;
+    }
+
     try{
         const respuesta = await fetch("http://127.0.0.1:5000/api/chat", {
             method: "POST",
-            headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+            headers: { "Content-Type": "application/json"}, //, "ngrok-skip-browser-warning": "true" },
             body: JSON.stringify({ message: texto })
         });
 
-        const data = await respuesta.text()
-
-        // 1. Limpiar el '+' inicial si existe en el string
-        // let textoProcesado = data.response.replace(/^\+/, '');
+        const data = await respuesta.text();
         
         const htmlRespuesta = marked.parse(data);
         chatBot.innerHTML += `<div class="w-100 p-4">${htmlRespuesta}</div>`;
@@ -444,6 +451,8 @@ async function enviarMensaje(){
         chatBot.innerHTML += `<div class="w-100 p-4">Error al conectar con EngiAI.</div>`;
         console.error(`Error exacto de conexión: ${error}`);
     }
+
+    document.querySelectorAll('div.spinner-grow.me-1').forEach((e) => {e.remove()});
 }
 
 function makeYesOrNoQuestion(){

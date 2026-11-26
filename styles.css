@@ -11,3 +11,18 @@ html::-webkit-scrollbar {
 .color-orange{
     --bs-heading-color: #ff7700 !important;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px); /* Le da un leve desplazamiento hacia arriba */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-slow {
+    animation: fadeIn 0.8s ease-out forwards;
+}

@@ -13,6 +13,7 @@ const searchBox = document.getElementById("searchBoxPosts");
 
 let currentPage = 1;
 // let has_more_pages = true
+let currentPosts = [];
 
 controlPosts(currentPage)
 
@@ -24,13 +25,47 @@ controlPosts(currentPage)
 }*/
 
 async function controlPosts(page){
-    let result = await getDataBasePosts(page);
-    console.log(result);
-    if (!result.has_more_pages) {
+    postsGrid.innerHTML = `
+    <svg class="bi spinner-rotate position-absolute top-50 start-50" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentcolor" stroke-width="2" stroke-linecap="round" width="64" height="64">
+        <path d="M8 1V4"/>
+        <path opacity="0.8" d="M3.05 3.05L5.17 5.17"/>
+        <path opacity="0.6" d="M4 8L1 8"/>
+        <path opacity="0.5" d="M5.17 10.83L3.05 12.95"/>
+        <path opacity="0.4" d="M8 12V15"/>
+        <path opacity="0.3" d="M10.83 10.83L12.95 12.95"/>
+        <path opacity="0.2" d="M15 8L12 8"/>
+        <path opacity="0.1" d="M12.95 3.05L10.83 5.17"/>
+    </svg>`;
+    nextButton.disabled = true;
+    previousButton.disabled = true;
+    randomButton.disabled = true;
+    nextButton.classList.add('visually-hidden');
+    previousButton.classList.add('visually-hidden');
+    randomButton.classList.add('visually-hidden');
+
+    searchBox.disabled = true;
+    searchBox.classList.add('visually-hidden');
+
+    currentPosts = await getDataBasePosts(page);
+
+    if (!currentPosts) {
+        postsGrid.innerHTML = `<p class="fg-danger">No se pudieron cargar los datos. Intentá de nuevo.</p>`;
+    }
+    
+    console.log(currentPosts);
+    if (!currentPosts.has_more_pages) {
         nextButton.disabled = true;
     } else {
-        chargeGrid(result);
+        nextButton.disabled = false;
+        nextButton.classList.remove('visually-hidden');
     }
+    chargeGrid(currentPosts);
+    randomButton.disabled = false;
+    randomButton.classList.remove('visually-hidden');
+    previousButton.classList.remove('visually-hidden');
+
+    searchBox.disabled = false;
+    searchBox.classList.remove('visually-hidden');
     /*nextButton.addEventListener("click", (result) => {
         if (result.has_more_pages) {
             currentPage += 1;
@@ -89,7 +124,7 @@ function chargeGrid(obj){
 }
 
 async function getDataBasePosts(page_num) {
-    return await fetch('http://localhost:5000/backend/posts?' + new URLSearchParams({
+    return await fetch(/*'http://localhost:5000/backend/posts?'*/'https://engiai.onrender.com/backend/posts?' + new URLSearchParams({
         page: page_num,
     }).toString())
         .then(response => {
@@ -127,23 +162,23 @@ function activateDrawer(element){
 }
 
 async function searchOnPage(userInput) {
-    let response = await getDataBasePosts(currentPage);
+    let response = currentPosts;
     let postsToShow = [];
     if (response) {
         userInput = userInput.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
         response.data.forEach((element) => {
             if (element.title.toLowerCase().includes(userInput) || element.description.toLowerCase().includes(userInput)) {
-                postsToShow += element;
+                postsToShow.push(element);
             }
         });
-        console.log(postsToShow[0]);
+        console.log(postsToShow);
     }
 }
 
 postsGrid.addEventListener("click", async (e) => {
     if (e.target.classList.contains('button-more-info')) {
         let dataIndex = e.target.getAttribute('data-index');
-        let response = await getDataBasePosts(currentPage);
+        let response = currentPosts;
         console.log(response);
         if (response) {
             let element = response.data[dataIndex];
@@ -163,6 +198,7 @@ randomButton.addEventListener("click", () => {
 searchBox.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && searchBox.value) {
         e.preventDefault();
-        searchOnPage(searchBox.value);
+        let value = searchBox.value;
+        searchOnPage(value);
     }
 });
