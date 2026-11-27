@@ -113,8 +113,10 @@ function chargeGrid(obj){
         postsGrid.innerHTML += 
         `<section class="card">
             <div class="card-body d-flex flex-row align-items-center justify-content-between">
-                <h4 class="card-title">${title}</h4>
-                <p class="card-text">${description}</p>
+                <div style="max-width: 600px;">
+                    <h4 class="card-title text-nowrap">${title}</h4>
+                </div>
+                <p class="card-text vanish-text text-truncate">${description}</p>
                 <a data-index="${position}" class="btn-solid theme-primary button-more-info" data-bs-toggle="drawer" href="#drawerGeneric" role="button" aria-controls="drawerGeneric">Más Info...</a>
             </div>
         </section>`;
