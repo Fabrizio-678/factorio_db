@@ -112,11 +112,14 @@ function chargeGrid(obj){
         }
         postsGrid.innerHTML += 
         `<section class="card">
-            <div class="card-body d-flex flex-row align-items-center justify-content-between">
+            <div class="card-body d-flex flex-row align-items-center justify-content-between flex-shrink-0">
+                <div class="w-icon">
+                    ${element.icon_html.replaceAll('/static/', 'https://factoriobin.com/static/')}
+                </div>
                 <div style="max-width: 600px;">
                     <h4 class="card-title text-nowrap">${title}</h4>
                 </div>
-                <p class="card-text vanish-text text-truncate">${description}</p>
+                <p class="card-text vanish-text text-truncate">${element.link}</p>
                 <a data-index="${position}" class="btn-solid theme-primary button-more-info" data-bs-toggle="drawer" href="#drawerGeneric" role="button" aria-controls="drawerGeneric">Más Info...</a>
             </div>
         </section>`;
