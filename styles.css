@@ -29,7 +29,7 @@ html::-webkit-scrollbar {
 
 .vanish-text {
     -webkit-mask-image: linear-gradient(to right, black 45%, transparent 100%);
-    mask-image: linear-gradient(to right, black 45%, transparent 100%);
+    mask-image: linear-gradient(to right, black 45%, 85%, transparent 100%);
 }
 
 .blueprint-book {
@@ -45,7 +45,16 @@ html::-webkit-scrollbar {
     /*position: relative;*/
 }
 
-.w-icon {
+.large-factorio-icon:not(.blueprint-book) {
+    width: 100%;
+    height: 100%;
+}
+
+.large-factorio-icon:not(.blueprint-book) .icons {
+    padding: 6px;
+}
+
+.config-icon {
     display: block;
     width: 64px;
     height: 64px;
@@ -70,18 +79,28 @@ html::-webkit-scrollbar {
 }
 
 .inline-icon {
-    position: static;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
-    height: 40%;
-    /*inset-inline-start: 25%;*/
+    width: calc(50% - 2px);
+    height: calc(50% - 2px);
+    flex-shrink: 0;
+}
+
+.blueprint-book .inline-icon {
+    width: calc(46% - 2px);
+    height: calc(46% - 2px);
 }
 
 .inline-icon:only-child {
-    width: 85%;
-    height: 85%;
+    width: 32px;
+    height: 32px;
+}
+
+.blueprint-book .inline-icon:only-child {
+    width: 75%;
+    height: 75%;
 }
 
 .inline-icon > img {
@@ -92,4 +111,24 @@ html::-webkit-scrollbar {
 
 .blueprint-book .icons {
     padding: 6px 6px 14px 8px;
+}
+
+.badge-sw {
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    width: 45%;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.mini-quality {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }

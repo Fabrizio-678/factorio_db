@@ -107,24 +107,47 @@ function chargeGrid(obj){
     obj.data.forEach((element) => {
         let title = element.title;
         let description = element.description;
-        if (description == "No existe descripción..."){
+        let infoJSON = JSON.parse(element.info_json.replaceAll("\\", ""));
+        //let version = "";
+        //console.log(infoJSON);
+
+        let hasDescription = description && description !== "No existe descripción...";
+
+        /*if (description == "No existe descripción..."){
             description = "";
-        }
+        }*/
+        /*if (infoJSON.factorioVersion) {
+            versrion = infoJSON.factorioVersion;
+        }*/
+
         postsGrid.innerHTML += 
         `<section class="card">
-            <div class="card-body d-flex flex-row align-items-center justify-content-between flex-shrink-0">
-                <div class="w-icon">
+            <div class="card-body d-flex flex-row align-items-center gap-3">
+                <div class="config-icon flex-shrink-0">
                     ${element.icon_html.replaceAll('/static/', 'https://factoriobin.com/static/')}
                 </div>
-                <div style="max-width: 600px;">
-                    <h4 class="card-title text-nowrap">${title}</h4>
-                </div>
-                <p class="card-text vanish-text text-truncate">${element.link}</p>
-                <a data-index="${position}" class="btn-solid theme-primary button-more-info" data-bs-toggle="drawer" href="#drawerGeneric" role="button" aria-controls="drawerGeneric">Más Info...</a>
+                ${hasDescription
+                    ?   `<div class="d-flex flex-column justify-content-center" style="max-width: 380px;">
+                            <h4 class="card-title text-nowrap mb-1 check-overflow">${title}</h4>
+                            <p class="fs-xs fg-emphasis-secondary fst-italic mb-0">Version: ${infoJSON.node.factorioVersion}</p>
+                        </div>
+                        <p class="card-text check-overflow text-truncate fg-emphasis-secondary ms-6" style="min-width: 0;">${description}</p>`
+                    :   `<div class="d-flex flex-column justify-content-center flex-grow-1 mb-0" style="min-width: 0;">
+                            <h4 class="card-title mb-1">${title}</h4>
+                            <p class="fs-xs fg-emphasis-secondary fst-italic mb-0">Version: ${infoJSON.node.factorioVersion}</p>
+                        </div>`
+                }
+                <a data-index="${position}" class="stretched-link button-more-info" data-bs-toggle="drawer" href="#drawerGeneric" role="button" aria-controls="drawerGeneric"></a>
             </div>
         </section>`;
 
         position += 1;
+    });
+
+    postsGrid.querySelectorAll('.check-overflow').forEach((e) => {
+        if (e.scrollWidth > e.clientWidth) {
+            e.classList.add('vanish-text');
+        }
     });
 }
 
